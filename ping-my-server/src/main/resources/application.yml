@@ -1,0 +1,10 @@
+server:
+  port: 8081
+spring:
+  application:
+    name: ping-my-server
+
+  kafka:
+    bootstrap-servers: localhost:9092
+    producer:
+      topic: ping
