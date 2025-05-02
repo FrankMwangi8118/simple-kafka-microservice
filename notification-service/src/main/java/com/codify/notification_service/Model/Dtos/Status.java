@@ -1,4 +1,4 @@
 package com.codify.notification_service.Model;
 
-public class Status {
+public record Status(String ip,String name) {
 }
