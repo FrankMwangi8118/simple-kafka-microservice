@@ -1,4 +1,4 @@
-package com.codify.notification_service.Model;
+package com.codify.notification_service.Model.Dtos;
 
-public record Status(String ip,String name) {
+public record Status(String ip,String name,String email) {
 }

@@ -12,22 +12,12 @@ import org.springframework.kafka.core.KafkaTemplate;
 
 @SpringBootApplication
 
-public class PingMyServerApplication implements ApplicationRunner {
+public class PingMyServerApplication  {
 	@Autowired
- private ProducerService producerService;
 
 	public static void main(String[] args) {
 		SpringApplication.run(PingMyServerApplication.class, args);
 
-	}
 
-	@Override
-	public void run(ApplicationArguments args) throws Exception {
-
-
-		System.out.println("-----------published");
-		for (int i=0;i<10;i++){
-			producerService.publishMessage("hello");
-		}
 	}
 }

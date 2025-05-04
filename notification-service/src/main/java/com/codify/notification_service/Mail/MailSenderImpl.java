@@ -1,4 +1,4 @@
-package Mail;
+package com.codify.notification_service.Mail;
 
 import jakarta.mail.internet.MimeMessage;
 import org.springframework.mail.javamail.JavaMailSender;

@@ -1,4 +1,4 @@
-package Mail;
+package com.codify.notification_service.Mail;
 
 import org.springframework.stereotype.Service;
 
