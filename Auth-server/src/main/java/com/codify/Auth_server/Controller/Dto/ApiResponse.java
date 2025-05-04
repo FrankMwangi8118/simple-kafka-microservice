@@ -7,6 +7,7 @@ import lombok.*;
 
 @Getter
 @Setter
+@Builder
 @AllArgsConstructor
 @NoArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
@@ -14,7 +15,8 @@ import lombok.*;
 public class ApiResponse {
 
     private String status;
-    private String statusCode;
+    private Integer statusCode;
     private String message;
     private String token;
+    private Object data;
 }

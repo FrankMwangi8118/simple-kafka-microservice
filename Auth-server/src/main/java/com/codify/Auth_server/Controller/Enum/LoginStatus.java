@@ -1,4 +1,4 @@
-package com.codify.Auth_server.Model.Enum;
+package com.codify.Auth_server.Controller.Enum;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -7,8 +7,8 @@ import lombok.Setter;
 
 @Getter
 public enum LoginStatus {
-    LOGIN_FAILED("LOGIN ATTEMPT FAILED");
-
+    LOGIN_FAILED("LOGIN ATTEMPT FAILED"),
+    LOGIN_SUCCESSFUL("LOGIN ATTEMPT SUCCESSFUL");
 
     private final String value;
 

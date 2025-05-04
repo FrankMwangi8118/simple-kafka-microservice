@@ -1,0 +1,5 @@
+CREATE TABLE user_tbl(
+id        uuid PRIMARY KEY ,
+email     VARCHAR(200) UNIQUE NOT NULL,
+password  VARCHAR(100) UNIQUE NOT NULL
+);

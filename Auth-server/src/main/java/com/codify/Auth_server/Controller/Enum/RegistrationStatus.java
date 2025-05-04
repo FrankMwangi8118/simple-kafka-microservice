@@ -1,4 +1,4 @@
-package com.codify.Auth_server.Model.Enum;
+package com.codify.Auth_server.Controller.Enum;
 
 public enum RegistrationStatus {
     SUCCESS("success"),
