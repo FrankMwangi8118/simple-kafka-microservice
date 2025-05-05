@@ -11,6 +11,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.UUID;
+
 @Slf4j
 @Service
 public class JdbcRepositoryImpl implements UserService {
@@ -25,17 +27,22 @@ public class JdbcRepositoryImpl implements UserService {
     @Override
     public User registerUser(RegistrationDto registrationDto) {
         log.info("registration request for user: {}", registrationDto.email());
-        if(userRepository.existsByEmail(registrationDto.email())){
-            log.error("registration for email: {} failed due to exception: {}",registrationDto.email(),RegistrationStatus.ALREADY_REGISTERED.getValue());
+        if (userRepository.existsByEmail(registrationDto.email())) {
+            log.error("registration for email: {} failed due to exception: {}", registrationDto.email(), RegistrationStatus.ALREADY_REGISTERED.getValue());
             throw new CustomSecurityException("email already in use", 500, RegistrationStatus.ALREADY_REGISTERED.getValue());
         }
         UserTbl userTbl = UserTbl.builder()
                 .email(registrationDto.email())
                 .password(passwordEncoder.encode(registrationDto.password()))
                 .build();
-        UserTbl persistedUser=userRepository.save(userTbl);
+        UserTbl persistedUser = userRepository.save(userTbl);
         log.info("registration successful for user: {}", registrationDto.email());
 
         return persistedUser.toUser();
+    }
+
+    @Override
+    public String getUserEmail(UUID id) {
+        return userRepository.findEmailById(id);
     }
 }

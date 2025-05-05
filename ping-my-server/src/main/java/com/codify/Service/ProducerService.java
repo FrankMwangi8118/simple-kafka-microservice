@@ -1,23 +1,23 @@
 package com.codify.Service;
 
 
+import com.codify.Controller.Dto.ServerStatus;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.ResponseEntity;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
-import org.springframework.core.env.Environment;
+
 @Service
 public class ProducerService {
-//    @Value("${spring.kafka.producer.topic}")
-//    private String topicName;
-//    private final KafkaTemplate<String,String>kafkaTemplate;
-//
-//    public ProducerService(KafkaTemplate<String, String> kafkaTemplate) {
-//        this.kafkaTemplate = kafkaTemplate;
-//        this.topicName =topicName;
-//    }
-//
-//    public void publishMessage(String msg) {
-//        kafkaTemplate.send(topicName,msg);
-//    }
+ private final KafkaTemplate<String,Object>kafkaTemplate;
+    @Value("${spring.kafka.producer.topic}")
+    private String topic;
 
+    public ProducerService(KafkaTemplate<String, Object> kafkaTemplate) {
+        this.kafkaTemplate = kafkaTemplate;
+    }
+    public ResponseEntity<?>publish(ServerStatus status){
+        kafkaTemplate.send(topic,status);
+        return ResponseEntity.ok().build();
+    }
 }

@@ -47,6 +47,7 @@ public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Excepti
             .httpBasic(Customizer.withDefaults())
             .authorizeHttpRequests(auth -> {
                 auth.requestMatchers(HttpMethod.POST,"/api/v1/auth/**").permitAll();
+                auth.requestMatchers(HttpMethod.GET,"/api/v1/getUser/**").permitAll();
                 auth.anyRequest().denyAll();
             })
             .build();

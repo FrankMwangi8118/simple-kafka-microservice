@@ -15,10 +15,7 @@ import org.springframework.stereotype.Service;
 
 import javax.crypto.SecretKey;
 import java.security.Key;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Optional;
+import java.util.*;
 
 @Service
 
@@ -48,16 +45,14 @@ public class AuthenticationServiceImpl implements AuthenticationService {
     public String generateToken(UserDetails userDetails) {
         Map<String, Object> claims = new HashMap<>();
         Optional<UserTbl> userTbl = userRepository.findByEmail(userDetails.getUsername());
-        if (userTbl.isPresent()) {
-            UserTbl userTbl1 = userTbl.get();
-            claims.put("id", userTbl1.getEmail());
-        }
+
 
 
         Date now = new Date();
         Date expiryDate = new Date(now.getTime() + jwtExpiry);
         return Jwts.builder()
-                .subject(userDetails.getUsername())
+                .claims(claims)
+                .subject(String.valueOf(userTbl.get().getId()))
                 .issuer("pInGmYsErVer.io")
                 .issuedAt(now)
                 .expiration(expiryDate)
